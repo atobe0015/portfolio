@@ -1,0 +1,46 @@
+@import '_layouts';
+@import '_gutters';
+
+.u-pointer {
+  cursor: pointer;
+}
+
+.u-alert {
+  // color: $c_fs_red;
+}
+
+.u-bold {
+  font-weight: 600;
+}
+
+.u-bold--black {
+  font-weight: 900;
+}
+
+.u-underline {
+  text-decoration: underline;
+}
+
+.u-box {
+  background-color: rgba(33, 33, 41, 0.6);
+  padding: rem(55) rem(40);
+  color: #fff;
+
+  @media screen and (max-width: $screen-xs-max) {
+    padding: rem(20);
+  }
+}
+
+.u-visible-xs {
+  display: none !important;
+
+  @media screen and (max-width: $screen-xs-max) {
+    display: block !important;
+  }
+}
+
+.u-hidden-xs {
+  @media screen and (max-width: $screen-xs-max) {
+    display: none !important;
+  }
+}

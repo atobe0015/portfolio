@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  outline: none;
+  cursor: none !important;
+}
+
+::-webkit-scrollbar {
+  // display: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+html {
+  font-size: vw__pc(12);
+  min-height: 100vh;
+  @media screen and (max-width: $screen-xs-max) {
+    font-size: vw__sp(12);
+  }
+}
+
+body {
+  overscroll-behavior: none;
+  font-family: $font_base;
+  color: $c_base;
+  background-color: $c_main;
+  line-height: 1.4;
+  font-size: rem(16);
+  letter-spacing: 0;
+  min-height: 100vh;
+  padding-top: rem(55);
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: 'palt' 1;
+  transition: all 0.3s ease;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  appearance: none;
+}

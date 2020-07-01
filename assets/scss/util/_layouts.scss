@@ -1,0 +1,41 @@
+.u-text-left {
+  text-align: left;
+}
+
+.u-text-center {
+  text-align: center;
+}
+
+.u-text-right {
+  text-align: right;
+}
+
+.u-text-xs-left {
+  @media screen and (max-width: $screen-xs-max) {
+    text-align: left;
+  }
+}
+
+.u-text-xs-center {
+  @media screen and (max-width: $screen-xs-max) {
+    text-align: center;
+  }
+}
+
+.u-text-xs-right {
+  @media screen and (max-width: $screen-xs-max) {
+    text-align: right;
+  }
+}
+
+.u-container {
+  width: rem(1240);
+  margin: 0 auto;
+  &.mod-small {
+    width: rem(800);
+  }
+  @media screen and (max-width: $screen-xs-max) {
+    width: 100% !important;
+    padding: 0 rem($gap * 6);
+  }
+}

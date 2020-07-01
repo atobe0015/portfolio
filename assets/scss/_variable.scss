@@ -1,0 +1,46 @@
+@use url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;1,300;1,400&display=swap');
+
+//====　フォントサイズ
+@function vw__pc($value) {
+  $rate: 100 / 1400;
+  @return $rate * $value * 1vw;
+}
+
+@function vw__sp($value) {
+  $rate: 100 / 375;
+  @return $rate * $value * 1vw;
+}
+
+@function rem($value) {
+  @return ($value / 12) * 1rem;
+}
+
+@function aspect($origin, $compare) {
+  @return ($origin / $compare) * 100%;
+}
+
+body {
+  --color-base: #333;
+  --color-main: #fff;
+  --color-sub: #bcb72e;
+  &.theme__dark {
+    --color-base: #fff;
+    --color-main: #333;
+    --color-sub: #bcb72e;
+  }
+}
+
+$c_base: var(--color-base);
+$c_main: var(--color-main);
+$c_sub: var(--color-sub);
+
+// BreakPoint
+$screen-md-max: 1400px; // SPサイズ
+$screen-xs-max: 767px; // SPサイズ
+
+$font_base: 'Barlow', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro',
+  'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', sans-serif;
+
+$gap: 8;
+
+@import '_mixins';
