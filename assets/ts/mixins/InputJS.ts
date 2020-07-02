@@ -1,13 +1,38 @@
 import Vue from 'vue'
+import VueComponent from 'vue-class-component'
 
 export default Vue.extend({
   props: {
-    id: [String, Number],
-    value: [String, Number],
-    label: [String, Number],
-    placeholder: [String, Number],
-    rules: String,
-    disabled: Boolean,
+    id: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    value: {
+      type: String || Number,
+      required: false,
+      default: ''
+    },
+    label: {
+      type: String || Number,
+      required: false,
+      default: ''
+    },
+    placeholder: {
+      type: String || Number,
+      required: false,
+      default: ''
+    },
+    rules: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    disabled: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     type: {
       type: String,
       default: 'text'
@@ -16,18 +41,27 @@ export default Vue.extend({
   computed: {
     innerVal: {
       get() {
-        return this.value
+        const res = this.value
+        return res
       },
-      set(v) {
-        this.$emit('on-update', v)
+      set(v: string | number) {
+        this.onUpdate(v)
       }
     },
 
     classes() {
       const rules = this.rules.split('|')
       return {
-        'mod-rules-required': rules.filter(rule => rule == 'required')[0]
+        'mod-rules-required': rules.filter(
+          (rule: string) => rule === 'required'
+        )[0]
       }
+    }
+  },
+
+  methods: {
+    onUpdate(v: string | number) {
+      this.$emit('on-update', v)
     }
   }
 })

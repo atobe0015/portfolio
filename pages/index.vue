@@ -30,12 +30,12 @@ export default Vue.extend({
     }
   },
   mounted() {
-    if (this.$device == 'pc') {
+    if (this.$device === 'pc') {
       window.addEventListener('mousemove', this.setMousePoint)
     }
   },
   computed: {
-    mousePoint(): Types.Computed['mousePoint'] {
+    mousePoint(): string {
       const X = this.pointer.y ? (this.window.w / 2 - this.pointer.y) / 800 : 0
       const Y = this.pointer.x ? (this.pointer.x - this.window.h / 2) / 800 : 0
       const properties: string =
@@ -44,10 +44,10 @@ export default Vue.extend({
     }
   },
 
-  methods: <Types.Methods>{
-    setMousePoint(evt) {
-      this.pointer.x = parseInt(evt.pageX)
-      this.pointer.y = parseInt(evt.pageY)
+  methods: {
+    setMousePoint(evt: any): void {
+      this.pointer.x = evt.pageX
+      this.pointer.y = evt.pageY
     }
   }
 })

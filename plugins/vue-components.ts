@@ -1,4 +1,4 @@
-import Vue from "vue";
+import Vue from 'vue'
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
 
@@ -8,26 +8,13 @@ const requireComponent = require.context(
   /[A-Z]\w+\.(vue|js)$/
 )
 
-requireComponent.keys().forEach(fileName => {
-  // コンポーネント設定を取得する
+requireComponent.keys().forEach((fileName: string) => {
   const componentConfig = requireComponent(fileName)
 
-  // コンポーネント名をパスカルケース (PascalCase) で取得する
-  const componentName = upperFirst(
-    camelCase(
-      // フォルダの深さに関わらずファイル名を取得する
-      fileName
-        .split('/')
-        .pop()
-        .replace(/\.\w+$/, '')
-    )
-  )
-
-  Vue.component(
-    componentName,
-    componentConfig.default || componentConfig
-  )
+  const name: string | undefined = fileName.split('/').pop()
+  if (name) {
+    const finalizeName = name.replace(/\.\w+$/, '')
+    const componentName = upperFirst(camelCase(finalizeName))
+    Vue.component(componentName, componentConfig.default || componentConfig)
+  }
 })
-
-
-

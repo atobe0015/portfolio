@@ -1,11 +1,7 @@
 <template lang="pug">
 .l(:class="schemeClasses")
-  
   .l-header
-    Header(
-      @on-open="overlay = true"
-      @on-close="overlay = false"
-      )
+    Header
 
   .l-aside
     SwitchMode
@@ -15,7 +11,7 @@
       nuxt
 
   .l-footer
-  Stalker(v-if="$device == 'pc'")
+  Stalker(v-if="$device === 'pc'")
 </template>
 
 <script lang="ts">
@@ -29,12 +25,6 @@ export default Vue.extend({
   components: {
     Header,
     SwitchMode
-  },
-
-  data() {
-    return {
-      overlay: false
-    }
   }
 })
 </script>

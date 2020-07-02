@@ -25,9 +25,4 @@ declare module 'types/works' {
   export type Computed = {
     mousePoint: string
   }
-
-  export type Methods = {
-    setMousePoint: (evt: MouseEvent) => void
-    goTo: (num: number) => void
-  }
 }

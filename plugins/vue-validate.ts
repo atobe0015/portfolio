@@ -1,13 +1,19 @@
 import Vue from 'vue'
-import { ValidationProvider, ValidationObserver, localize, extend } from 'vee-validate';
+import {
+  ValidationProvider,
+  ValidationObserver,
+  localize,
+  extend
+} from 'vee-validate'
 import ja from 'vee-validate/dist/locale/ja.json'
-import * as rules from 'vee-validate/dist/rules'
+import { email, numeric, required, max } from 'vee-validate/dist/rules'
 
-for (let rule in rules) {
-    extend(rule, rules[rule])
-}
+extend('email', email)
+extend('numeric', numeric)
+extend('required', required)
+extend('max', max)
 
-Vue.component('ValidationProvider', ValidationProvider);
-Vue.component('ValidationObserver', ValidationObserver);
+Vue.component('ValidationProvider', ValidationProvider)
+Vue.component('ValidationObserver', ValidationObserver)
 
 localize('ja', ja)

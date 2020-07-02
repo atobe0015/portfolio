@@ -8,7 +8,7 @@
             Head Tatsuya Atobe
             p
               | フロントエンドエンジニア。<br>
-              | ウェブ開発歴は大学時代も含めると {{historyYears}} 年目。<br>
+              | ウェブ開発歴は大学時代も含めると {{since}} 年目。<br>
               | 2児の父 / {{age}}歳 / 血液型は B 型。
 
       section.s(v-for="history in histories")
@@ -24,6 +24,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import dayjs from 'dayjs'
 import historyJSON from '@/assets/json/history.json'
 
 export default Vue.extend({
@@ -34,18 +35,16 @@ export default Vue.extend({
   },
   computed: {
     age() {
-      const now = this.$dayjs()
-      const birth = this.$dayjs('19930104')
-      const thisYearBirth = birth
-        .clone()
-        .format(this.$dayjs().year() + '-01-04')
+      const now = dayjs()
+      const birth = dayjs('19930104')
+      const thisYearBirth = birth.clone().format(dayjs().year() + '-01-04')
       const age = now.year() - birth.year()
       const res = now.isBefore(thisYearBirth) ? age - 1 : age
       return res
     },
-    historyYears() {
-      const now = this.$dayjs().year()
-      const start = this.$dayjs('2013').year()
+    since() {
+      const now = dayjs().year()
+      const start = dayjs('2013').year()
       const res = now - start
       return res
     }

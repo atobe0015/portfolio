@@ -5,17 +5,23 @@
   "author": "pcp-atobe",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "cross-env NODE_ENV=develop nuxt-ts",
     "netlify--serve": "netlify-lambda serve netlify",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
+    "tslint": "tslint './*.ts'",
     "test": "jest"
   },
   "dependencies": {
+    "@nuxt/types": "^2.13.0",
+    "@nuxt/typescript-runtime": "^0.4.10",
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/style-resources": "^1.0.0",
+    "@types/lodash": "^4.14.157",
+    "@types/node": "^14.0.14",
+    "cross-env": "^7.0.2",
     "dayjs": "^1.8.28",
     "dotenv": "^8.2.0",
     "gsap": "^3.3.4",
@@ -23,6 +29,7 @@
     "node-sass": "^4.14.1",
     "nodemailer": "^6.4.10",
     "nuxt": "^2.0.0",
+    "nuxt-i18n": "^6.12.2",
     "nuxt-user-agent": "^1.2.2",
     "pug": "^3.0.0",
     "pug-loader": "^2.4.0",
@@ -30,10 +37,11 @@
     "sass": "^1.26.7",
     "sass-loader": "^8.0.2",
     "vee-validate": "^3.3.6",
+    "vue-class-component": "^7.2.3",
+    "vue-typed-mixins": "^0.2.0",
     "vuex-persistedstate": "^3.0.1"
   },
   "devDependencies": {
-    "@nuxt/types": "^2.13.0",
     "@nuxt/typescript-build": "^0.6.0",
     "@types/gsap": "^1.20.2",
     "@types/nodemailer": "^6.4.0",
@@ -44,6 +52,8 @@
     "jest": "^24.1.0",
     "prettier": "^1.19.1",
     "ts-jest": "^25.0.0",
+    "tslint": "^6.1.2",
+    "tslint-loader": "^3.5.4",
     "vue-jest": "^4.0.0-0"
   }
 }

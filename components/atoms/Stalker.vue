@@ -23,8 +23,8 @@ export default Vue.extend({
   mounted() {
     const list = document.querySelectorAll('a, .js-hover')
     list.forEach(e => {
-      e.addEventListener('mouseover', e => this.getPoint(e), false)
-      e.addEventListener('mouseout', e => this.setState(false), false)
+      e.addEventListener('mouseover', evt => this.getPoint(evt), false)
+      e.addEventListener('mouseout', evt => this.setState(false), false)
     })
 
     window.addEventListener('mousemove', this.setMousePoint)
@@ -56,13 +56,13 @@ export default Vue.extend({
       this.x = evt.clientX
       this.y = evt.clientY
     },
-    getPoint(evt) {
+    getPoint(evt: any): void {
       const target = evt.srcElement.getBoundingClientRect()
       this.link.x = target.left - 12 + target.width
       this.link.y = target.top - 8 + target.height
       this.setState(true)
     },
-    setState(flg) {
+    setState(flg: boolean): void {
       this.linkHover = flg
     }
   }

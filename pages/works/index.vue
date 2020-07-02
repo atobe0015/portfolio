@@ -63,7 +63,7 @@ export default Vue.extend({
   },
 
   mounted() {
-    if (this.$device == 'pc') {
+    if (this.$device === 'pc') {
       window.addEventListener('mousemove', this.setMousePoint)
     }
     const elem = this.$refs.list
@@ -87,12 +87,12 @@ export default Vue.extend({
   },
 
   methods: {
-    setMousePoint(evt): Types.Methods['setMousePoint'] {
+    setMousePoint(evt: any): void {
       this.pointer.x = evt.clientX
       this.pointer.y = evt.clientY
     },
 
-    goTo(num): Types.Methods['goTo'] {
+    goTo(num: number) {
       this.slide.goTo(num)
     }
   }

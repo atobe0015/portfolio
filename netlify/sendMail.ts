@@ -1,4 +1,3 @@
-require('dotenv').config()
 import nodemailer from 'nodemailer'
 
 const headers = {
@@ -7,7 +6,7 @@ const headers = {
     'Origin, X-Requested-With, Content-Type, Accept'
 }
 
-exports.handler = async evt => {
+exports.handler = async (evt: any) => {
   if (evt.httpMethod === 'POST') {
     const smtpConfig = {
       host: 'smtp.gmail.com',
@@ -29,7 +28,7 @@ exports.handler = async evt => {
     // }
     // }
 
-    let transporter = nodemailer.createTransport(smtpConfig)
+    const transporter = nodemailer.createTransport(smtpConfig)
 
     // transporter.sendMail({
     //   from: '"跡部達也_Atobe_Tastuya" <atobe0104@gmail.com>',
@@ -50,7 +49,7 @@ exports.handler = async evt => {
     })
   }
   return {
-    headers: headers,
+    headers,
     statusCode: 200
   }
 }

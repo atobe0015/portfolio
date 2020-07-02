@@ -18,34 +18,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import Types from 'types/works'
-export default Vue.extend({
-  data() {
-    return {
-      dummyHeight: 0
-    }
-  },
-  mounted() {
-    this.setDummyHeight()
-    window.addEventListener('scroll', this.scroll)
-  },
-  methods: {
-    scroll(evt) {
-      // console.log(evt)
-    },
-    setDummyHeight() {
-      this.dummyHeight = this.$refs.content.clientHeight
-    },
-    computed: {
-      contentHeight() {
-        return this.$refs.content.clientHeight
-      }
-    }
-  }
-})
+export default Vue.extend({})
 </script>
 
-<style lang="scss" scoped>
-.work {
-}
-</style>
+<style lang="scss" scoped></style>

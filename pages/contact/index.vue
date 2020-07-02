@@ -51,13 +51,15 @@ export default Vue.extend({
   },
   methods: {
     async confirm() {
-      const valid = await this.$refs.form.validate()
+      const form = this.$refs.form
+      const valid = await form.validate()
       if (!valid) return false
       this.phase = 2
       this.setPhase(2)
     },
     async submit() {
-      const valid = await this.$refs.form.validate()
+      const form = this.$refs.form
+      const valid = await form.validate()
       if (!valid) return false
       try {
         const res = await this.$axios.post(
@@ -67,7 +69,7 @@ export default Vue.extend({
         this.setPhase(3)
       } catch (e) {}
     },
-    setPhase(num) {
+    setPhase(num: number) {
       this.phase = num
     }
   }

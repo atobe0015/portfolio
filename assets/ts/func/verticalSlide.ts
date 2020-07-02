@@ -1,4 +1,5 @@
 import { TweenMax } from 'gsap'
+import { captureRejectionSymbol } from 'events'
 
 type Info = {
   width: number
@@ -6,20 +7,17 @@ type Info = {
 }
 
 type pagination = {
-  container?: HTMLElement
-  items?: HTMLElement[]
+  container: Element
+  items: Element[]
 }
 
 export default class {
   private _container: HTMLDivElement
-  private _slides: HTMLLIElement[]
-  private _pagination: pagination = {
-    container: undefined,
-    items: undefined
-  }
+  private _slides: Element[]
+  private _pagination: pagination | undefined
   private _info: Info
-  private _state: Boolean = true
-  private _duration: Number = 1000
+  private _state: boolean = true
+  private _duration: number = 1000
   private _active: number = 0
 
   constructor(public opts: any) {
@@ -39,18 +37,16 @@ export default class {
     this.on()
   }
 
-  private init_pagination(container) {
-    const pagination_container = document.getElementsByClassName(container)[0]
-    const children = Array.from(pagination_container.children)
-    const pagination_items = children
-      .map(child => {
-        return child.dataset.item === '' ? child : false
-      })
-      .filter(child => child)
+  private init_pagination(container: string) {
+    const paginationContainer: Element = document.getElementsByClassName(
+      container
+    )[0]
+    const children = Array.from(paginationContainer.children) as HTMLElement[]
+    const paginationItems = children.filter((child: any) => child !== false)
 
     this._pagination = {
-      container: pagination_container,
-      items: pagination_items
+      container: paginationContainer,
+      items: paginationItems
     }
   }
 
@@ -74,13 +70,15 @@ export default class {
   }
 
   private onMoved() {
-    this._pagination.items.forEach((paginate, i) => {
-      if (i === this._active) {
-        paginate.classList.add('is-active')
-      } else {
-        paginate.classList.remove('is-active')
-      }
-    })
+    if (this._pagination) {
+      this._pagination.items.forEach((paginate, i) => {
+        if (i === this._active) {
+          paginate.classList.add('is-active')
+        } else {
+          paginate.classList.remove('is-active')
+        }
+      })
+    }
   }
 
   goTo(num: number) {
@@ -98,7 +96,7 @@ export default class {
     })
 
     this._slides.forEach((slide, i) => {
-      if (i == this._active) {
+      if (i === this._active) {
         slide.classList.add('is-active')
         TweenMax.to(slide, this._duration / 1000, {
           opacity: 1
@@ -112,7 +110,7 @@ export default class {
     })
   }
 
-  private onWheel(evt) {
+  private onWheel(evt: WheelEvent) {
     const moveY = evt.deltaY
     if (moveY > 50 && this._state && this._active < this._slides.length - 1) {
       this.goToNext()
