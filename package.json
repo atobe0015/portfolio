@@ -28,7 +28,7 @@
     "netlify-lambda": "^1.6.3",
     "node-sass": "^4.14.1",
     "nodemailer": "^6.4.10",
-    "nuxt": "^2.0.0",
+    "nuxt": "^3.4.3",
     "nuxt-i18n": "^6.12.2",
     "nuxt-user-agent": "^1.2.2",
     "pug": "^3.0.0",
